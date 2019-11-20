@@ -1,5 +1,6 @@
-# Mensa-aziendale-Django-
-Example of Django Project (Pyhton)
+===============
+Mensa Aziendale
+===============
 
 Mensa Aziendale e’ un portale multiutente che utilizza il
 framework Django per la gestione di una mensa aziendale.

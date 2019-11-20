@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Insert Plate{% endblock %}
+
+{% block content %}
+<link href="{% static 'app/css/insertplate.css' %}" rel="stylesheet">
+
+<div class="insertplate">
+<h1>Inserisci un piatto</h1>
+<h3>In questa schermata puoi inserire un piatto nel database</h3>
+<br>
+<form method="post" onsubmit="return checkprice()"> <!-- data-parsley-validate> -->
+  {% csrf_token %}
+  {{ form.as_p }}
+<button type="submit">Inserisci</button>
+</form>
+
+</div>
+
+
+<script src="{% static '/accounts/js/jquery.min.js' %}"></script>
+<script src="{% static 'app/js/insertplate.js' %}"></script>
+<!--<script src="{% static '/accounts/js/parsley.min.js' %}"></script>
+-->
+
+
+{% endblock %}

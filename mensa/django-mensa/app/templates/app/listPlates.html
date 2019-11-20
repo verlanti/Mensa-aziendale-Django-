@@ -1,0 +1,75 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Lista Piatti{% endblock %}
+
+{% block content %}
+{% load static %}
+<link href="{% static 'app/css/listplates.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<h1>Lista Piatti</h1>
+<br>
+<h3>In questa schermata sono presenti tutti i piatti nel database</h3>
+
+{% if list_plates|length != 0 %}
+<h2> Primo</h2>
+{% for plate in list_plates %}
+  {% if plate.menu_name.name == 'Primo' %}
+    <form method="post" >
+      {% csrf_token %}
+      <h3>{{plate.name}}
+      <button class="btn" name="change" value="{{plate.pk}}"><i class="fa fa-edit"></i>Edit</button>
+      <button class="btn" name="delete" value="{{plate.pk}}"><i class="fa fa-close"></i>Remove</button>
+      <button class="btn" name="search" value="{{plate.name}}"><i class="fa fa-youtube-square" ></i><a href="https://www.youtube.com/results?search_query=ricetta+{{plate.name}}" target="_blank" id="youtube"> Search</a></button>
+      </h3>
+    </form>
+  {%endif%}
+{%endfor%}
+
+  <h2>Secondo</h2>
+  {% for plate in list_plates %}
+  {%if plate.menu_name.name == 'Secondo' %}
+    <form method="post">
+      {% csrf_token %}
+      <h3>{{plate.name}}
+        <button class="btn" name="change" value="{{plate.pk}}"><i class="fa fa-edit"></i>Edit</button>
+        <button class="btn" name="delete" value="{{plate.pk}}"><i class="fa fa-close"></i>Remove</button>
+        <button class="btn" name="search" value="{{plate.name}}"><i class="fa fa-youtube-square"></i><a href="https://www.youtube.com/results?search_query=ricetta+{{plate.name}}" id="youtube" target="_blank"> Search</a></button>
+      </h3>
+    </form>
+      {%endif%}
+    {%endfor%}
+
+    <h2>Contorno</h2>
+    {% for plate in list_plates %}
+    {% if plate.menu_name.name == 'Contorno' %}
+      <form method="post">
+        {% csrf_token %}
+            <h3>{{plate.name}}
+            <button class="btn" name="change" value="{{plate.pk}}"><i class="fa fa-edit"></i>Edit</button>
+            <button class="btn" name="delete" value="{{plate.pk}}"><i class="fa fa-close"></i>Remove</button>
+            <button class="btn" name="search" value="{{plate.name}}"><i class="fa fa-youtube-square"></i><a href="https://www.youtube.com/results?search_query=ricetta+{{plate.name}}" id="youtube" target="_blank"> Search</a></button>
+        </h3>
+      </form>
+      {%endif%}
+      {%endfor%}
+
+      <h2>Dessert</h2>
+      {% for plate in list_plates %}
+      {% if plate.menu_name.name == 'Dessert' %}
+      <form method="post">
+          {% csrf_token %}
+          <h3>{{plate.name}}
+            <button class="btn" name="change" value="{{plate.pk}}"><i class="fa fa-edit"></i>Edit</button>
+            <button class="btn" name="delete" value="{{plate.pk}}"><i class="fa fa-close"></i>Remove</button>
+            <button class="btn" name="search" value="{{plate.name}}"><i class="fa fa-youtube-square"></i><a href="https://www.youtube.com/results?search_query=ricetta+{{plate.name}}" id="youtube" target="_blank"> Search</a></button>
+          </h3>
+        </form>
+        {%endif%}
+      {%endfor%}
+{% else %}
+  <h1>Nessun piatto nel Database  </h1>:
+  <a href="{% url 'app:insertplate' %}"></a>
+{%endif%}
+
+{% endblock %}

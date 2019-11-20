@@ -1,0 +1,22 @@
+p {
+
+  float:right;
+  margin-top: 5%;
+  margin-right: 20%;
+
+}
+
+.signup {
+  text-align: justify;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.signup h2 {
+  margin-left:10%;
+  font-weight: bold;
+}
+
+.signup button {
+  margin-left:10%;
+}

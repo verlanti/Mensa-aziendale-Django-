@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Change Menu{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link href="{% static 'app/css/changeMenu.css' %}" rel="stylesheet">
+
+  <div class="changemenu">
+      <h1>Cambia il  menu</h1><br>
+        <h3>In questa schermata puoi aggiungere un piatto al menu</h3><br>
+        <form method="post" onsubmit="return checkform()">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Inserisci</button>
+      </form>
+      <script type="text/javascript">
+
+        function checkform() {
+          alert("Piatto inserito correttamente nel Menu");
+          return true;
+        }
+
+      </script>
+</div>
+{% endblock %}

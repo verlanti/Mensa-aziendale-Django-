@@ -1,0 +1,49 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Ordina{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link href="{% static 'app/css/ordine.css' %}" rel="stylesheet">
+<script src="{% static '/app/js/ordine.js' %}"></script>
+
+
+<h1>Ordina</h1>
+
+<form method="post">
+  {% csrf_token %}
+
+  <!-- Bisogna far vedere anche il prezzo -->
+  <h3>Scegli un piatto:</h3>
+  <br>
+  {% for plate in form.fields.plate_chosen.queryset%}
+  <label for={{plate.id}}>
+    <div class='container'>
+      <div class='key-div'>
+        {{plate.name}}
+      </div>
+      <div class='value-div'>
+        <label id ={{plate.id}}label> {{plate.price}} </label> €
+        <input type="checkbox" name="plate_chosen" value={{plate.id}} id={{plate.id}} onclick="countTotal()">
+      </div>
+    </div>
+  </label>
+  {%endfor%}
+<br>
+<br>
+<strong>Data Prenotazione:</strong>   {{ form.date }}
+
+<br>
+<br>
+  <strong>Totale: <span id="total">0</span> € </strong>
+<br>
+<br>
+
+
+<button type="submit">ordina</button>
+</form>
+
+
+
+{% endblock %}

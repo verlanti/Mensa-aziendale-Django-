@@ -1,0 +1,22 @@
+<!-- templates/accounts/login.html -->
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<link href="{% static 'registration/css/login.css' %}" rel="stylesheet">
+
+
+<div class = "login">
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+  <a href="{% url 'password_reset' %}">Reset password</a>
+</form>
+</div>
+{% endblock %}

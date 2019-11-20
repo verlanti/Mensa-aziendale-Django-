@@ -1,0 +1,64 @@
+Metadata-Version: 1.1
+Name: django-mensa
+Version: 1.0
+Summary: A semplice app Django per gestire una mensa .
+Home-page: https://www.example.com/
+Author: Emanuele Verlanti
+Author-email: yourname@example.com
+License: BSD License
+Description: ===============
+        Mensa Aziendale
+        ===============
+        
+        Mensa Aziendale e’ un portale multiutente che utilizza il
+        framework Django per la gestione di una mensa aziendale.
+        
+        Questa applicazione web presenta un design semplice ed
+        elegante e mette a disposizione all’utente un set di strumenti
+        per garantire un’esperienza di navigazione funzionale e
+        intuitiva.
+        
+        Documentazione dettagliata nella cartella "doc"
+        
+        Installazione
+        -------------
+         
+        pip3 install --user /mensa/django-mensa/dist/django-mensa-1.0.tar.gz
+        
+        Disinstallazione
+        -----------------
+        
+        pip3 uninstall django-mensa
+        
+        
+        Dipendenze
+        ----------
+        
+        Questo software ha bisogno dei seguenti pacchetti per funzionare che possono essere installati con le seguenti istruzioni in Linux:
+        
+        python3 
+        
+        django > 2.1 : pip3 install django
+         
+        
+        Quick start
+        -----------
+        
+        0. Installa il pacchetto django con pip3 come descritto in precedenza 
+        
+        1. Fai partire il server python3 manage.py runserver
+            
+        2. Visita http://127.0.0.1:8000/ per utilizzare l'app.
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: X.Y
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content

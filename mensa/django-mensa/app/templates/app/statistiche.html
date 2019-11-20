@@ -1,0 +1,118 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Statistiche{% endblock %}
+
+{% block content %}
+{% load static %}
+<link href="{% static 'app/css/statistiche.css' %}" rel="stylesheet">
+
+<h1>Statistiche</h1>
+<br><br>
+
+<!-- First Container -->
+
+<div class="container-fluid bg-1 text-center">
+    <h3 class="margin2">Costo per dipendente</h3>
+<table>
+<tr>
+  <th>User</th>
+  {% for d in day %}
+  <th>{{d}}</th>
+  {%endfor%}
+  <th id="weekly_title">Totale Settimanale</th>
+</tr>
+{% for key,value in daily_cost.items %}
+<tr>
+  <td>{{key}}</td>
+  {%for v in value%}
+  <td>{{v}} €</td>
+  {%endfor%}
+</tr>
+{%endfor%}
+</table>
+</div>
+
+
+
+
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin2">Scelte per piatto </h3>
+<table>
+<tr>
+  <th>Plate</th>
+  {% for d in day %}
+  <th>{{d}}</th>
+  {%endfor%}
+  <th >Totale Settimanale</th>
+</tr>
+{% for key,value in daily_chose.items %}
+<tr>
+  <td>{{key}}</td>
+  {%for v in value%}
+  <td>{{v}}</td>
+  {%endfor%}
+</tr>
+{%endfor%}
+
+</table>
+</div>
+
+
+{% endblock %}
+
+
+{%block content2%}
+
+
+<!-- Third Container -->
+<div class="container-fluid bg-3 text-center">
+<dl>
+  <dt>
+    <h3 class="margin">Scelta per piatto (Grafico %)</h3>
+  </dt>
+    {% for key,value in total_chose.items %}
+
+    <dd class="percentage percentage-{{value.1|stringformat:"d"}}"><span class="text">{{key}}: {{value.1}}%</span></dd>
+
+    {%endfor%}
+
+</dl>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+<dl>
+  <dt>
+    <h3 class="margin">
+      Costo per dipendente (Grafico %)
+      </h3>
+  </dt>
+    {% for key,value in total_cost.items %}
+
+    <dd class="percentage percentage-{{value.1|stringformat:"d"}}">
+      <span class="text">{{key}}:{{value.1}}% </span></dd>
+
+    {%endfor%}
+
+</dl>
+
+</div>
+
+
+
+<!-- Forth Container-->
+<div class="container-fluid bg-4 text-center">
+  <h3 class="margin2">Top 3 dei piatti scelti</h3>
+
+  <h3 class="margin2">1.  {{top_3.0.0}} {{top_3.0.1.1}}%</h3><br>
+  <h3 class="margin2">2.  {{top_3.1.0}} {{top_3.1.1.1}}%</h3><br>
+  <h3 class="margin2">3.  {{top_3.2.0}} {{top_3.2.1.1}}%</h3>
+
+
+</div>
+
+
+
+
+{%endblock%}

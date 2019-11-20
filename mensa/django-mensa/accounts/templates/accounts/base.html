@@ -1,0 +1,99 @@
+<!-- templates/accounts/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="{% static 'app/css/bootstrap.css' %}" rel="stylesheet">
+  <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
+
+  <title>{% block title %}Django Auth Title{% endblock %}</title>
+
+
+</head>
+
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+             <div class="col-md-12">
+                <div class="nav">
+                   <button class="btn-nav">
+                   <span class="icon-bar inverted top"></span>
+                   <span class="icon-bar inverted middle"></span>
+                   <span class="icon-bar inverted bottom"></span>
+                   </button>
+                </div>
+                <div class="nav-content hideNav hidden">
+                   <ul class="nav-list vcenter">
+                      <li class="nav-item"><a class="item-anchor" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="item-anchor" href="{% url 'app:menu' %}">Menu</a></li>
+                      {% if user.is_authenticated %}
+                      <!-- user02_ -->
+                      {% if user.groups.all.0.name == 'Impiegato' or user.username == 'admin' %}
+                        <li class="nav-item"><a class="item-anchor" href="{% url 'app:ordine' %}">Ordina!</a></li>
+                      {% endif%}
+                      {% if user.groups.all.0.name == 'Impiegato' or user.username == 'admin' or  user.groups.all.0.name == 'Cuoco' %}
+                        <li class="nav-item"><a class="item-anchor" href="{% url 'app:listordini' %}">Lista ordini</a></li>
+                      {%endif%}
+
+                      <!-- user01_ -->
+                      {% if user.groups.all.0.name == 'Cuoco' or user.username == 'admin' %}
+                        <li class="nav-item"><a class="item-anchor"  href="{% url 'app:changemenu' %}">Modifica il Menu</a></li>
+                        <li class="nav-item"><a class="item-anchor"  href="{% url 'app:insertplate' %}">Inserisci nuovi piatti</a></li>
+                        <li class="nav-item"><a class="item-anchor"  href="{% url 'app:listplate' %}">Lista dei piatti</a></li>
+                      {% endif%}
+
+                      {% if user.groups.all.0.name == 'Azienda' or user.username == 'admin' %}
+                          <li class="nav-item"><a class="item-anchor" href="{% url 'app:statistics' %}">Statistiche</a></li>
+                      {% endif%}
+
+                        <li class="nav-item"><a class="item-anchor" href="{% url 'password_reset' %}">Reset password</a></li>
+                        <li class="nav-item"><a class="item-anchor" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+
+                      <li class="nav-item"><a class="item-anchor" href="{% url 'login' %}">Login</a></li>
+                      <li class="nav-item"><a class="item-anchor" href="{% url  'accounts:signup' %}">Sign Up</a></li>
+                    {% endif%}
+
+                   </ul>
+                </div>
+             </div>
+  </nav>
+
+
+
+<main>
+  <center>
+    {% block content %}
+    {% endblock %}
+  </center>
+
+  {%block content2%}
+
+  {%endblock%}
+
+
+</main>
+
+
+<!-- script -->
+<script src="{% static '/app/js/jquery.js' %}"></script>
+<script src="{% static '/app/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/app/js/menu-color.js' %}"></script>
+<script src="{% static '/app/js/script.js' %}"></script>
+
+
+</body>
+
+
+<footer>
+</footer>
+
+
+
+
+</html>

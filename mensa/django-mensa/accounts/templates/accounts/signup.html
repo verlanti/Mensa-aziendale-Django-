@@ -1,0 +1,50 @@
+{% extends './base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+
+{% load static %}
+
+
+{% block content %}
+
+<link href="{% static 'accounts/css/signup.css' %}" rel="stylesheet">
+<script src="{% static '/accounts/js/jquery.min.js' %}"></script>
+<!--<script src="{% static '/accounts/js/parsley.min.js' %}"></script>
+-->
+<div>
+  <p style="float: right;">
+     <img src="{% static 'accounts/img/signup.svg' %}">
+  </p>
+
+<div class="signup">
+  <h2>Sign up</h2>
+  <br>
+
+
+  <form method="post" onsubmit="return checkpassword()"> <!--data-parsley-validate>-->
+    {% csrf_token %}
+  <!--  {{form.as_p}} -->
+    {{ form.username.label_tag }} {{ form.username }}<br><br>
+    {{ form.password1.label_tag}} {{ form.password1 }}
+     <span id="characters"></span><br>
+     <!--<span class="helptext" id="helptext"></span>-->
+     <br>
+    {{ form.password2.label_tag }} {{ form.password2 }}
+    <span id="characters2"></span><br><br>
+    {{ form.email.label_tag }} {{ form.email }}<br><br>
+    {{ form.group.label_tag }} {{ form.group }}<br><br>
+
+    <button type="submit">Sign up</button>
+  </form>
+</div>
+
+</div>
+
+
+<script src="{% static '/accounts/js/signup.js' %}"></script>
+
+
+
+
+{% endblock %}

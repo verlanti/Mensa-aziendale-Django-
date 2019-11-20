@@ -1,0 +1,101 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+
+{% load static %}
+  <link href="{% static 'app/css/menu.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Header -->
+
+    <table>
+    <tr>
+      <th>
+    <br>
+      <h1>Menu</h1>
+
+          {% if menu_dict.Primo|length == 0 and menu_dict.Secondo|length == 0 and menu_dict.Contorno|length == 0 and menu_dict.Dessert|length == 0 %}
+               <h1>Il menu e' vuoto</h1>
+             {% else %}
+             {% if user.groups.all.0.name == 'Cuoco'  %}
+             <h2>Primo</h2>
+             {% for p in menu_dict.Primo %}
+               <h3>{{p.name}}   {{p.price}} Euro</h3>
+               <form action="" method="post" id="formPrimo">
+                 {% csrf_token %}
+                   <button class="btn" name="change"  form="formPrimo" value="{{p.pk}}" ><i class="fa fa-edit"></i>Edit</button>
+                   <button class="btn" name="delete"  form="formPrimo" value="{{p.pk}}" ><i class="fa fa-close"></i>Remove</button>
+               </form>
+               <br>
+               <br>
+             {%endfor%}
+             <h2>Secondo</h2>
+             {% for p in menu_dict.Secondo %}
+               <h3>{{p.name}}   {{p.price}} Euro</h3>
+               <form action="" method="post" id="formSecondo">
+                 {% csrf_token %}
+                 <button class="btn" name="change"  form="formSecondo" value="{{p.pk}}" ><i class="fa fa-edit"></i>Edit</button>
+                 <button class="btn" name="delete"  form="formSecondo" value="{{p.pk}}" ><i class="fa fa-close"></i>Remove</button>
+                 </form>
+               <br>
+               <br>
+             {%endfor%}
+             <h2>Contorno</h2>
+             {% for p in menu_dict.Contorno %}
+               <h3>{{p.name}}   {{p.price}} Euro</h3>
+               <form action="" method="post" id="formContorno">
+                 {% csrf_token %}
+                 <button class="btn" name="change"  form="formContorno" value="{{p.pk}}" ><i class="fa fa-edit"></i>Edit</button>
+                 <button class="btn" name="delete"  form="formContorno" value="{{p.pk}}" ><i class="fa fa-close"></i>Remove</button>
+                 </form>
+               <br>
+               <br>
+             {%endfor%}
+             <h2>Dessert</h2>
+             {% for p in menu_dict.Dessert %}
+               <h3>{{p.name}}   {{p.price}} Euro</h3>
+               <form action="" method="post" id="formDessert">
+                 {% csrf_token %}
+                 <button class="btn" name="change"  form="formDessert" value="{{p.pk}}" ><i class="fa fa-edit"></i>Edit</button>
+                 <button class="btn" name="delete"  form="formDessert" value="{{p.pk}}" ><i class="fa fa-close"></i>Remove</button>
+                </form>
+              <br>
+              <br>
+             {%endfor%}
+             {%else%}
+             <h2>Primo</h2>
+             {% for p in menu_dict.Primo %}
+               <h3>{{p.name}}   {{p.price}} Euro
+               <button class="btn" name="search" value="{{p.name}}"><i class="fa fa-youtube-square" ></i><a href="https://www.youtube.com/results?search_query=ricetta+{{p.name}}" target="_blank" id="youtube"> Search</a></button>
+               </h3>
+               <br>
+             {%endfor%}
+             <h2>Secondo</h2>
+             {% for p in menu_dict.Secondo %}
+               <h3>{{p.name}}   {{p.price}} Euro
+               <button class="btn" name="search" value="{{p.name}}"><i class="fa fa-youtube-square" ></i><a href="https://www.youtube.com/results?search_query=ricetta+{{p.name}}" target="_blank" id="youtube"> Search</a></button>
+               </h3>
+               <br>
+             {%endfor%}
+             <h2>Contorno</h2>
+             {% for p in menu_dict.Contorno %}
+               <h3>{{p.name}}   {{p.price}} Euro
+               <button class="btn" name="search" value="{{p.name}}"><i class="fa fa-youtube-square" ></i><a href="https://www.youtube.com/results?search_query=ricetta+{{p.name}}" target="_blank" id="youtube"> Search</a></button>
+               </h3>
+               <br>
+             {%endfor%}
+             <h2>Dessert</h2>
+             {% for p in menu_dict.Dessert %}
+             <h3>{{p.name}}   {{p.price}} Euro
+               <button class="btn" name="search" value="{{p.name}}"><i class="fa fa-youtube-square" ></i><a href="https://www.youtube.com/results?search_query=ricetta+{{p.name}}" target="_blank" id="youtube"> Search</a></button>
+            </h3>
+               <br>
+             {%endfor%}
+             {%endif%}
+             {%endif%}
+
+        </th>
+        </tr>
+        </table>
+{% endblock %}

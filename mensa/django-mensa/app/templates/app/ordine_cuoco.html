@@ -1,0 +1,83 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Ordina{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link href="{% static 'app/css/ordine_cuoco.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<h1>Lista ordini</h1>
+
+
+{% if user.is_authenticated and user.groups.all.0.name == 'Cuoco' or user.username == 'admin' %}
+
+{% for day,ordine in list_ordini.items%}
+
+{% if ordine.0|length != 0%}
+<h2>{{day}}</h2>
+
+<table>
+  <tr>
+  <th>ID</th>
+  <th>Nome</th>
+  <th>Lista Piatti</th>
+  </tr>
+  {% for o in ordine.0 %}
+  <tr>
+    <td>{{o.id}}</td>
+    <td>{{o.name}}</td>
+    {% for plate in o.plate_chosen.all %}
+      <td>{{plate.name}}</td>
+      {%endfor%}
+  </tr>
+  {%endfor%}
+</table>
+{%endif%}
+{%endfor%}
+{% endif %}
+<!------------------------------------------------------------------------->
+
+{% if user.is_authenticated and user.groups.all.0.name == 'Impiegato' %}
+
+{% for day,ordine in list_ordini.items%}
+
+<h2>{{day}}</h2>
+<table>
+  <tr>
+  <th>ID</th>
+  <th>Nome</th>
+  <th>Lista Piatti</th>
+
+  </tr>
+
+  {% for o in ordine.0 %}
+  {% if o.name == user.username %}
+  <tr>
+    <td>{{o.id}}</td>
+    <td>{{o.name}}</td>
+
+    {% for plate in o.plate_chosen.all %}
+      <td>{{plate.name}}</td>
+    {%endfor%}
+    <td><b>Totale Ordine</b> : {{o.total}} Euro</td>
+    <td>
+      <form action="{% url 'app:deleteordine' o.id %}" method="post">
+        {% csrf_token %}
+      <button class="btn" name="delete"><i class="fa fa-close"></i>Remove</button>
+      </form>
+    </td>
+
+  </tr>
+  {% endif %}
+  {%endfor%}
+</table>
+
+{%endfor%}
+{% endif %}
+
+
+
+{% endblock %}

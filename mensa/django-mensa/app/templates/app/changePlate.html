@@ -1,0 +1,25 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Change Plate{% endblock %}
+
+{% block content %}
+<link href="{% static 'app/css/changePlate.css' %}" rel="stylesheet">
+
+<h1>Aggiornamento Piatto </h1>
+<br>
+<h3>In questa schermata puoi modificare un piatto</h3>
+<br>
+<br>
+<form method="post" onsubmit="return checkprice()" ><!--data-parsley-validate>-->
+  {% csrf_token %}
+  {{ form.as_p }}
+<button type="submit">Aggiorna</button>
+</form>
+
+
+<script src="{% static '/accounts/js/jquery.min.js' %}"></script>
+<script src="{% static 'app/js/changeplate.js'%}"></script>
+<!--<script src="{% static '/accounts/js/parsley.min.js' %}"></script>-->
+
+
+{% endblock %}
