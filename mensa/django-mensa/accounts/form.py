@@ -2,11 +2,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Group
-#from parsley.decorators import parsleyfy
 from django.urls import reverse_lazy
 
 
-#@parsleyfy
+
 class RegisterForm(UserCreationForm):
 
     email = forms.EmailField(label = "Email")
@@ -15,19 +14,7 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username","password1","password2","email","group")
-        #parsley_extras = {
-        #    'password1': {
-        #        'minlength': "8",
-        #        'error-message': "Your password must contain at least 8 characters.",
-        #    },
-
-        #    'password2': {
-        #        'equalto': "password1",
-        #        'error-message': "Enter the same password as before, for verification.",
-        #    },
-        #}
-
-
+       
 
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)

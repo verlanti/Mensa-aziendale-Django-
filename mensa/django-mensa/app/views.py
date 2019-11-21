@@ -8,23 +8,7 @@ from django.views import generic
 
 
 # Create your views here.
-####################PLATE###################################################3
-#class InsertPlate(generic.CreateView):
-#    form_class = PlateForm
-#    template_name = 'app/insertPlate.html'
-#    success_url = reverse_lazy('app:insertplate')
 
-#    def post(self, request):
-#        if request.method == 'POST':
-#            form = PlateForm(request.POST)
-#            if form.is_valid():
-#                plate = form.save()
-#                return redirect('app:insertplate')
-#            else:
-#                form = PlateForm()
-
-#        return render(request, 'app/insertPlate.html', {'form': form})
-################################################################################
 def insertPlate(request):
     form = PlateForm()
 
@@ -125,7 +109,7 @@ def changeMenu(request):
             form = MenuForm(request.POST)
             if form.is_valid():
                 menu_dict = form.cleaned_data
-                #print(menu_dict)
+                
 
                 for key, value in menu_dict.items():
                         plate = Plates.objects.filter(name=value.name)[0]
@@ -159,7 +143,7 @@ def ordine(request):
             form.save_m2m()
 
             emp = Employee.objects.latest('id')
-            #print(emp)
+           
             emp.total =  totale
             emp.name=request.user.username
             emp.save()
