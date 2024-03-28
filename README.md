@@ -1,4 +1,4 @@
-# Mensa-aziendale-Django-
+# Mensa-aziendale-Django- (University Project)
 Example of Django Project (Pyhton)
 
 Mensa Aziendale e’ un portale multiutente che utilizza il
